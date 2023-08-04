@@ -24,6 +24,7 @@ from utils.requests_tool.set_current_request_cache import SetCurrentRequestCache
 from utils.other_tools.models import TestCase, ResponseData
 from utils import config
 from urllib import parse
+
 # from utils.requests_tool.encryption_algorithm_control import encryption
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -87,15 +88,11 @@ class RequestControl:
         header = ast.literal_eval(cache_regular(str(header)))
         request_data = ast.literal_eval(cache_regular(str(request_data)))
 
-        # print(header,'------')
-        # print(request_data,'--------=======')
-        print("application/x-www-form-urlencoded" in str(header.values()), '-=-=-=0-=---0-0-00-')
         if header is None:
             header = {"headers": None}
         else:
             # 将header中的int转换成str
             for key, value in header.items():
-                print(key,value,'-----')
                 if not isinstance(value, str):
                     header[key] = str(value)
             if "multipart/form-data" in str(header.values()):
@@ -110,8 +107,11 @@ class RequestControl:
                     header['Content-Type'] = request_data.content_type
 
             if "application/x-www-form-urlencoded" in str(header.values()):
-                print(parse.urlencode(request_data), '222222-------')
-                return parse.urlencode(request_data)
+                finnalData = {
+                    "data": request_data
+                }
+                # 替换最终值里面的空格与单引号
+                return parse.urlencode(finnalData).replace('+', '').replace('%27', '%22'), header
 
         return request_data, header
 
@@ -273,7 +273,6 @@ class RequestControl:
             headers=_headers,
             verify=False,
             **kwargs)
-
         return res
 
     @classmethod
@@ -431,7 +430,6 @@ class RequestControl:
             _res_data = self._check_params(
                 res=res,
                 yaml_data=self.__yaml_case)
-
             self.api_allure_step(
                 url=_res_data.url,
                 headers=str(_res_data.headers),
@@ -454,4 +452,3 @@ class RequestControl:
 if __name__ == '__main__':
 
     tryContrl = RequestControl()
-    print(tryContrl.multipart_in_headers())

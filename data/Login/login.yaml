@@ -21,10 +21,9 @@ login_01:
     # 是否执行，空或者 true 都会执行
     is_run: true
     data:
-      data:
-        name: '13155556666'
-        password: '123456'
-        code: '123456'
+      name: '13155556666'
+      password: 'e10adc3949ba59abbe56e057f20f883e'
+      code: '123456'
       # 是否有依赖业务，为空或者false则表示没有
     dependence_case: False
         # 依赖的数据

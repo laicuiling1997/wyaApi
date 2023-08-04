@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time   : 2023-08-02 19:40:35
+# @Time   : 2023-08-04 14:22:30
 
 
 import allure
@@ -30,7 +30,6 @@ class TestLogin:
         """
         res = RequestControl(in_data).http_request()
         TearDownHandler(res).teardown_handle()
-        print(res, 'resresrseresrseers')
         Assert(assert_data=in_data['assert_data'],
                sql_data=res.sql_data,
                request_data=res.body,
