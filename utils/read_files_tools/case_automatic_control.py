@@ -153,5 +153,5 @@ class TestCaseAutomaticGeneration:
                     )
 
 
-# if __name__ == '__main__':
-    # TestCaseAutomaticGeneration().get_case_automatic()
+if __name__ == '__main__':
+    TestCaseAutomaticGeneration().get_case_automatic()

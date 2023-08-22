@@ -13,7 +13,7 @@ from utils.logging_tool.log_control import INFO, ERROR, WARNING
 from utils.other_tools.models import TestCase
 from utils.read_files_tools.clean_files import del_file
 from utils.other_tools.allure_data.allure_tools import allure_step, allure_step_no
-from utils.cache_process.cache_control import CacheHandler
+from utils.cache_process.cache_control import CacheHandler,Cache
 
 
 @pytest.fixture(scope="session", autouse=False)
@@ -36,10 +36,11 @@ def work_login_init():
                 'x-requested-with': 'XMLHttpRequest'}
     # 请求登录接口
 
-    res = requests.post(url=url, data=payload, verify=True, headers=headers)
-    token = res.json()['data']['token']
-
-    CacheHandler.update_cache(cache_name='login_token', value=token)
+    res = requests.post(url=url, data=payload, verify=True, headers=headers).json()
+    token = res['data']['token']
+    # print(token,'----token')
+    Cache('work_login_init').set_caches(token)
+    CacheHandler.update_cache(cache_name='work_login_init', value=token)
     # response_cookie = res.cookies
     # cookies = ''
     # for k, v in response_cookie.items():

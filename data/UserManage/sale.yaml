@@ -1,21 +1,25 @@
+# 公共参数
+case_common:
+  allureEpic: 开发平台接口
+  allureFeature: 客户管理模块
+  allureStory: 获取客户列表
+
 sale_01:
     host: ${{host()}}
     url: /_sale/sale/intention/own-customer-list.json
     method: GET
-    detail:
+    detail: 请求成功
     headers:
       authority: oa2.ruishan666.com
       x-requested-with: XMLHttpRequest
       Content-Type: application/x-www-form-urlencoded
-      -Token: ${login_token}
+      -Token: $cache{work_login_init}
     # 请求的数据，是 params 还是 json、或者file、data
     requestType: params
     # 是否执行，空或者 true 都会执行
     is_run: true
     data:
-      is_own: 2
-      page: 1
-      pageSize: 10
+
       # 是否有依赖业务，为空或者false则表示没有
     dependence_case: False
         # 依赖的数据
@@ -23,9 +27,9 @@ sale_01:
     assert:
       # 断言接口状态码
       errorCode:
-        jsonpath: $.errorCode
+        jsonpath: $.status
         type: ==
-        value: -1
+        value: 1
         AssertType:
 #      # 断言接口返回的username
 #      errorMsg:
@@ -41,20 +45,18 @@ sale_02:
     host: ${{host()}}
     url: /_sale/sale/intention/own-customer-list.json
     method: GET
-    detail:
+    detail: 请求成功失败
     headers:
       authority: oa2.ruishan666.com
       x-requested-with: XMLHttpRequest
       Content-Type: application/x-www-form-urlencoded
-      -Token: ${login_token}
+      -Token: $cache{work_login_init}
     # 请求的数据，是 params 还是 json、或者file、data
     requestType: params
     # 是否执行，空或者 true 都会执行
     is_run: true
     data:
-      is_own: nn
-      page: 1
-      pageSize: 10
+
       # 是否有依赖业务，为空或者false则表示没有
     dependence_case: False
         # 依赖的数据
@@ -62,9 +64,9 @@ sale_02:
     assert:
       # 断言接口状态码
       errorCode:
-        jsonpath: $.errorCode
+        jsonpath: $.status
         type: ==
-        value: -1
+        value: 1
         AssertType:
 #      # 断言接口返回的username
 #      errorMsg:
