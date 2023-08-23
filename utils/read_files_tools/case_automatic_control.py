@@ -107,6 +107,7 @@ class TestCaseAutomaticGeneration:
         :return: D:\\Project\\test_case\\test_case_demo.py
         """
         new_name = os.sep.join(self.spilt_path)
+        # print(new_name,'=====newname===')
         return ensure_path_sep("\\test_case" + new_name)
 
     @property
@@ -154,4 +155,5 @@ class TestCaseAutomaticGeneration:
 
 
 if __name__ == '__main__':
-    TestCaseAutomaticGeneration().get_case_automatic()
+   TestCaseAutomaticGeneration().get_case_automatic()
+

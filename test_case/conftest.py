@@ -39,7 +39,7 @@ def work_login_init():
     res = requests.post(url=url, data=payload, verify=True, headers=headers).json()
     token = res['data']['token']
     # print(token,'----token')
-    Cache('work_login_init').set_caches(token)
+    # Cache('work_login_init').set_caches(token)
     CacheHandler.update_cache(cache_name='work_login_init', value=token)
     # response_cookie = res.cookies
     # cookies = ''

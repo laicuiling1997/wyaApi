@@ -23,3 +23,5 @@ def ensure_path_sep(path: Text) -> Text:
 
     return root_path() + path
 
+if __name__ == "__main__":
+    print(ensure_path_sep("\\" + os.path.join("cache","filename")))

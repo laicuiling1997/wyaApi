@@ -15,14 +15,15 @@ from utils.other_tools.exceptions import ValueNotFoundError
 
 class Cache:
     """ 设置、读取缓存 """
-    def __init__(self, filename: Union[Text, None]) -> None:
+    def __init__(self, filename: Union[Text,None]) -> None:
         #Union：传入的文件类型可以是Text类型，也可以是None，也可以自定义其他的或多个类型。
         # 如果filename不为空，则操作指定文件内容
         if filename:
             self.path = ensure_path_sep("\\cache" + filename)
+            print(self.path,'-----slef.path----')
         # 如果filename为None，则操作所有文件内容
         else:
-            self.path = ensure_path_sep("\\cache")
+            self.path = ensure_path_sep("\\cache" + filename)
 
     def set_cache(self, key: Text, value: Any) -> None:
         """
@@ -89,3 +90,6 @@ class CacheHandler:
     @staticmethod
     def update_cache(*, cache_name, value):
         _cache_config[cache_name] = value
+
+if __name__ == "__main__":
+    Cache('kkkkk').set_caches('dkskjskkfks')
